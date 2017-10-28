@@ -1,0 +1,191 @@
+<!DOCTYPE html> 
+<html lang="en-us" dir="ltr"> 
+<head> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, shrink-to-fit=no">
+<title>Lightbox JS Example</title>
+
+<!-- Remove Tap Highlight on Windows Phone IE -->
+<meta name="msapplication-tap-highlight" content="no">
+<!--[if IEMobile]><meta http-equiv="cleartype" content="on"><![endif]-->
+<!--[if IE]><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><meta http-equiv="imagetoolbar" content="no"><![endif]-->
+
+<style>
+html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0
+}
+
+body {
+	text-align: center;
+	font: normal normal normal 16px/1 serif
+}
+
+.wrapper {
+	width: 90%;
+	margin: 0 5% 2em;
+	padding: 1em 0 0;
+	text-align: left
+}
+
+.gallery {
+	clear: both;
+	overflow: auto;
+	width: 700px;
+	margin: 0 auto 1em
+}
+
+.gutter {
+	width: 100%;
+	height: 1px;
+
+	clear: both
+}
+
+#lightbox {
+	padding: 10px;
+	background-color:#fff;
+	border-bottom: 2px solid #666;
+	border-right: 2px solid #666
+}
+
+.photo-link {
+	display: block;
+	float: left;
+	height: 8em;
+	margin: 0 .5em 1em;
+	text-decoration: none;
+	border: none;
+	outline: none
+}
+
+#lightboxDetails {
+	padding-top: 0.4em;
+	font: normal normal normal 0.8em/1 sans-serif
+}
+
+#keyboardMsg kbd {
+	vertical-align: middle;
+	color: #333
+}
+
+#lightboxCaption {float: left}
+
+#keyboardMsg {float: right}
+
+#closeButton {
+	top: 5px;
+	right: 5px
+}
+
+#lightbox img {
+	clear: both;
+	border: none
+}
+
+#overlay img {border: none}
+
+#lightboxImage {
+	display: block;
+	width: 100%;
+	*width: auto;
+	height: auto;
+	vertical-align: top
+}
+
+#overlay {background-image: url(img/overlay.png)}
+
+* html #overlay {
+	background-color: #333;
+	back\ground-color: transparent;
+	background-image: url(blank.gif);
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="img/overlay.png", sizingMethod="scale")
+}
+
+.thumb-image {
+	display: block;
+	width: 100%;
+	max-width: 15em;
+	height: auto;
+	max-height: 8em;
+	vertical-align: top;
+	border: none
+}
+
+@media only screen and (max-width: 770px) {
+	
+	.gallery {width: 100%}
+	.thumb-image{margin: 0 auto}
+	.photo-link {float: none}
+
+}
+
+@media only screen and (max-width: 519px) {
+
+	#lightboxDetails {width:100% !important}
+
+}
+
+.footer {
+	float: left;
+	clear: both;
+	width: 100%
+}
+
+</style>
+
+<!--[if lte IE 6]>
+<style>
+/*! IE5 just because LightBox JS seems to work with it :D */
+body {overflow-x: hidden}
+.gallery {width: 97.5%}
+.thumb-image {width: auto}
+</style>
+<![endif]-->
+
+</head>
+<body>
+
+<div class="wrapper">
+
+	<div class="gallery">
+
+		<a href="images/unplash.jpg" title="Click to display" data-box="lightbox" data-title="Arche" class="photo-link"><img class="thumb-image" src="images/unplash.jpg" alt="Arche" /></a>
+		<a href="images/grayscale.jpg" title="Click to display" data-box="lightbox" class="photo-link"><img class="thumb-image" src="images/grayscale.jpg" alt="Grayscale" /></a>
+		<a href="images/480x270.png" title="Click to display" data-box="lightbox" class="photo-link"><img class="thumb-image" src="images/480x270.png" alt="Grayscale" /></a>
+
+	</div> <!-- /gallery -->
+	
+	<div class="gutter"></div>
+
+	<p>The oldy but well known javascript LightBox with no dependencies that helped us in the '2000s to create simple but effective photo galleries. This is a version adapted and corrected for a better cross-browser support, responsive and with capacities for multilanguage. Minified within Babel JS to follow the new generation of coding.</p>
+	
+	<div class="footer">
+		<div class="footer-inner">
+			<p>LightBox, original script by Lokesh Dhakar with some enhancements by cara-tm.com</p>
+		</div>
+	</div>
+
+</div> <!-- /wrapper -->
+
+<script>
+/*!
+ *	Lightbox JS: Fullsize Image Overlays 
+ *	by Lokesh Dhakar - http://www.huddletogether.com
+ *
+ *	Adaptation by cara-tm.com
+ *
+ *	For more information on this script, visit:
+ *	http://huddletogether.com/projects/lightbox/
+ *	https://github.com/cara-tm/lightbox_js
+ *
+ *	Licensed under the Creative Commons Attribution 2.5 License - http://creativecommons.org/licenses/by/2.5/
+ *	(basically, do anything you want, just leave my name and link)
+ */
+var close_string = 'press <a href="#" onclick="hideLightbox(); return false;"><kbd>x</kbd></a> to close',
+close_tooltip = 'Click to close';
+var loadingImage='img/loading.gif',closeButton='img/close.gif';function getPageScroll(){var a;return self.pageYOffset?a=self.pageYOffset:document.documentElement&&document.documentElement.scrollTop?a=document.documentElement.scrollTop:document.body&&(a=document.body.scrollTop),arrayPageScroll=['',a],arrayPageScroll}function getPageSize(){var a,b;window.innerHeight&&window.scrollMaxY?(a=document.body.scrollWidth,b=window.innerHeight+window.scrollMaxY):document.body.scrollHeight>document.body.offsetHeight?(a=document.body.scrollWidth,b=document.body.scrollHeight):(a=document.body.offsetWidth,b=document.body.offsetHeight);var c,d;return self.innerHeight?(c=self.innerWidth,d=self.innerHeight):document.documentElement&&document.documentElement.clientHeight?(c=document.documentElement.clientWidth,d=document.documentElement.clientHeight):document.body&&(c=document.body.clientWidth,d=document.body.clientHeight),pageHeight=b<d?d:b,pageWidth=a<c?c:a,arrayPageSize=[pageWidth,pageHeight,c,d],arrayPageSize}function pause(a){for(var b=new Date,c=b.getTime()+a;;)if(b=new Date,b.getTime()>c)return}function getKey(a){keycode=null==a?event.keyCode:a.which,key=String.fromCharCode(keycode).toLowerCase(),'x'==key&&hideLightbox()}function listenKey(){document.onkeypress=getKey}function showLightbox(a){var b=document.getElementById('overlay'),c=document.getElementById('lightbox'),d=document.getElementById('lightboxCaption'),f=document.getElementById('lightboxImage'),g=document.getElementById('loadingImage'),h=document.getElementById('lightboxDetails'),j=getPageSize(),k=getPageScroll();g&&(g.style.top=k[1]+(j[3]-35-g.height)/2+'px',g.style.left=(j[0]-20-g.width)/2+'px',g.style.display='block'),b.style.height=j[1]+'px',b.style.display='block',imgPreload=new Image,imgPreload.onload=function(){f.src=a.href;var l=k[1]+(j[3]-35-imgPreload.height)/2,m=(j[0]-20-imgPreload.width)/2,n=m;for(c.style.top=0>l?'0px':l+'px',c.style.left=0>m?'0px':m+'px',c.style.right=0>n?'0px':n+'px',h.style.width='auto',a.getAttribute('data-title')?(d.style.display='block',d.innerHTML=a.getAttribute('data-title')):d.style.display='none',-1!=navigator.appVersion.indexOf('MSIE')&&pause(250),g&&(g.style.display='none'),selects=document.getElementsByTagName('select'),i=0;i!=selects.length;i++)selects[i].style.visibility='hidden';return c.style.display='block',j=getPageSize(),b.style.height=j[1]+'px',listenKey(),!1},imgPreload.src=a.href}function hideLightbox(){for(objOverlay=document.getElementById('overlay'),objLightbox=document.getElementById('lightbox'),objOverlay.style.display='none',objLightbox.style.display='none',selects=document.getElementsByTagName('select'),i=0;i!=selects.length;i++)selects[i].style.visibility='visible';document.onkeypress=''}function initLightbox(){if(document.getElementsByTagName){for(var c,a=document.getElementsByTagName('a'),b=0;b<a.length;b++)c=a[b],c.getAttribute('href')&&'lightbox'==c.getAttribute('data-box')&&(c.onclick=function(){return showLightbox(this),!1});var d=document.getElementsByTagName('body').item(0),f=document.createElement('div');f.setAttribute('id','overlay'),f.onclick=function(){return hideLightbox(),!1},f.style.display='none',f.style.position='absolute',f.style.top='0',f.style.left='0',f.style.zIndex='90',f.style.width='100%',d.insertBefore(f,d.firstChild);var g=getPageSize(),h=getPageScroll(),j=new Image;j.onload=function(){var r=document.createElement('a');r.setAttribute('href','#'),r.onclick=function(){return hideLightbox(),!1},f.appendChild(r);var s=document.createElement('img');return s.src=loadingImage,s.setAttribute('id','loadingImage'),s.style.position='absolute',s.style.zIndex='150',r.appendChild(s),j.onload=function(){},!1},j.src=loadingImage;var k=document.createElement('div');k.setAttribute('id','lightbox'),k.style.display='none',k.style.position='absolute',k.style.zIndex='100',d.insertBefore(k,f.nextSibling);var l=document.createElement('a');l.setAttribute('href','#'),l.setAttribute('title',close_tooltip),l.onclick=function(){return hideLightbox(),!1},k.appendChild(l);var m=new Image;m.onload=function(){var r=document.createElement('img');return r.src=closeButton,r.setAttribute('id','closeButton'),r.style.position='absolute',r.style.zIndex='200',l.appendChild(r),!1},m.src=closeButton;var n=document.createElement('img');n.setAttribute('id','lightboxImage'),l.appendChild(n);var o=document.createElement('div');o.setAttribute('id','lightboxDetails'),k.appendChild(o);var p=document.createElement('div');p.setAttribute('id','lightboxCaption'),p.style.display='none',o.appendChild(p);var q=document.createElement('div');q.setAttribute('id','keyboardMsg'),q.innerHTML=close_string,o.appendChild(q)}}function addLoadEvent(a){var b=window.onload;window.onload='function'==typeof window.onload?function(){b(),a()}:a}addLoadEvent(initLightbox);
+</script>
+</body></html>

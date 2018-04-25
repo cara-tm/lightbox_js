@@ -1,10 +1,42 @@
 # lightbox_js
+
 The well known but original old LightBox with some enhancements.
 
 The oldy but well known javascript LightBox v 1 with no dependencies that helped us in the '2000s to create simple but effective photo galleries.
 This is a version adapted and corrected for a better cross-browser support, responsive and with capacities for multilanguage. Minified within Babel JS to follow the new generation of coding. Only 8 kbytes (js & CSS files combined) before Gzip compression; IE6 minimum. With no dependencies because speed matters.
 
-# Additional CSS rules if needed
+## Configuration
+
+
+You have access to some variables in order to configure the script depending of your needs and suitable for translations:
+
+* `close_string` The string displayed on the right bottom of your images.
+* `clos_tooltip` The tooltip title for the Close button.
+* `loadingImage` The path to your custom loading image.
+
+So place this into your pages:
+
+    <script>
+    var close_string = 'press <a href="#" onclick="hideLightbox(); return false;"><kbd>x</kbd></a> to close',
+    close_tooltip = 'Click to close',
+    loadingImage = '/img/white-loader.gif',closeButton='/img/close.gif';
+    </script>
+    
+## Putting it all files together
+
+All files required are available within a CDN service. Here is a sample of integration:
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/cara-tm/lightbox_js@1.0/css/lightbox.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/gh/cara-tm/lightbox_js@1.0/lightbox_js.min.js"></script>
+    <script>
+    var close_string = 'press <a href="#" onclick="hideLightbox(); return false;"><kbd>x</kbd></a> to close',
+    close_tooltip = 'Click to close',
+    loadingImage = '/img/white-loader.gif',closeButton='/img/close.gif';
+    </script>
+    
+
+## Additional CSS rules if needed
 
     <!--[if lte IE 6]>
     <style>

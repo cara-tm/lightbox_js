@@ -24,7 +24,9 @@ So place this into your pages:
     
 ## Putting it all files together
 
-All files required are available within a CDN service. Here is a sample of integration:
+All files required are available within two CDN services. Here is the samples of integration.
+
+### jsDelivr
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/cara-tm/lightbox_js@1.0/css/lightbox.min.css" />
 
@@ -34,7 +36,17 @@ All files required are available within a CDN service. Here is a sample of integ
     close_tooltip = 'Click to close',
     loadingImage = '/img/white-loader.gif',closeButton='/img/close.gif';
     </script>
+
+### RawGit
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/cara-tm/lightbox_js/0a8a14f3/css/lightbox.min.css">
     
+    <script src="https://cdn.rawgit.com/cara-tm/lightbox_js/0a8a14f3/lightbox_js.min.js"></script>
+    <script>
+    var close_string = 'press <a href="#" onclick="hideLightbox(); return false;"><kbd>x</kbd></a> to close',
+    close_tooltip = 'Click to close',
+    loadingImage = '/img/white-loader.gif',closeButton='/img/close.gif';
+    </script>
 
 ## Additional CSS rules if needed
 

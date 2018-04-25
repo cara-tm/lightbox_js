@@ -11,7 +11,7 @@ This is a version adapted and corrected for a better cross-browser support, resp
 You have access to some variables in order to configure the script depending of your needs and/or pretty suitable for translations:
 
 * `close_string` The string displayed on the right bottom of your images.
-* `clos_tooltip` The tooltip title for the Close button.
+* `close_tooltip` The tooltip title for the Close button.
 * `loadingImage` The path to your custom loading image.
 
 So place this into your pages:

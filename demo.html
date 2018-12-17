@@ -166,14 +166,16 @@ body {
 	filter:progid: DXImageTransform.Microsoft.AlphaImageLoader(src="../img/000000-0.8.png", sizingMethod="scale")
 }
 
-#lightbox {
+html #lightbox {
 	position: absolute;
+	position: fixed;
 	max-width: 99%;
 	max-width: calc(100% - 6px);
 	margin: 0 auto;
 	padding: 0 0 5px;
 	border: 3px solid #fff;
 	background-color: #000;
+	background-color: rgba(0,0,0,.5);
 	border-radius: 4px;
 	-webkit-animation: bounce 1s ease-in-out;
 	-moz-animation-name: bounce 1s ease-in-out;
@@ -210,9 +212,10 @@ body {
 
 #lightbox img {
 	clear: both;
-	width: 100%;
+	width: auto;
 	max-height: 93vh;
 	max-width: 100%;
+	margin: 0 auto;
 	border: none;
 	object-fit: contain
 }
@@ -280,6 +283,8 @@ body {
 <style>
 /*! IE5 just because LightBox JS seems to work with it :D */
 body {overflow-x: hidden}
+#overlay{background:#000!important}
+html #lightbox{position:absolute!important}
 .gallery {width: 97.5%}
 .thumb-image {width: 300px;height: 200px}
 </style>

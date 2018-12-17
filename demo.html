@@ -108,6 +108,62 @@ body {
 	outline: none
 }
 
+.thumb-image {
+	display: block;
+	width: 100%;
+	max-width: 15em;
+	height: auto;
+	max-height: 8em;
+	vertical-align: top;
+	border: none
+}
+
+@media only screen and (max-width: 770px) {
+
+	.gallery{width:100%}
+	.thumb-image {margin: 0 auto}
+	.photo-link{float:none}
+
+}
+
+@media only screen and (max-width: 770px) {
+
+	.gallery {width: 100%}
+	.thumb-image{margin: 0 auto}
+	.photo-link {float: none}
+
+}
+
+.gutter {
+	width: 100%;
+	height: 1px;
+
+	clear: both
+}
+
+.footer {
+	float: left;
+	clear: both;
+	width: 100%
+}
+
+/*! Start: Lightbox rules */
+
+#overlay {
+	background-color: #000;
+	-webkit-opacity: 0.8;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity=80)
+}
+
+* html #overlay {
+	background-color: #333;
+	back\ground-color: transparent;
+	background-image: url(blank.gif);
+	filter:progid: DXImageTransform.Microsoft.AlphaImageLoader(src="../img/000000-0.8.png", sizingMethod="scale")
+}
+
 #lightbox {
 	position: absolute;
 	max-width: 99%;
@@ -130,6 +186,44 @@ body {
 }
 
 #lightbox a {text-decoration: none}
+
+#lightbox > a {display: block}
+
+#closeButton {
+	position: absolute;
+	z-index: 2000;
+	top: 1px;
+	right: 1px;
+	display: block;
+	width: 1em;
+	height: 1em;
+	background: #333;
+	color: #fff;
+	font: normal normal normal 1.6em/1.1 Arial,sans-serif;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	box-shadow: inset 0 0 1px #808080;
+	cursor: pointer
+}
+
+#lightbox img {
+	clear: both;
+	width: 100%;
+	max-height: 93vh;
+	max-width: 100%;
+	border: none;
+	object-fit: contain
+}
+
+#overlay img {border: none}
+
+#lightboxImage {
+	display: block;
+	width: 100%;
+	*width: auto;
+	height: auto;
+	vertical-align: top
+}
 
 #lightboxDetails {
 	float: left;
@@ -157,97 +251,10 @@ body {
 	color: #aaa
 }
 
-#lightbox > a {display: block}
-
-#lightbox img {
-	clear: both;
-	width: 100%;
-	max-width: 100%;
-	border: none
-}
-
-#overlay img {border: none}
-
-#closeButton {
-	position: absolute;
-	z-index: 2000;
-	top: 1px;
-	right: 1px;
-	display: block;
-	width: 1em;
-	height: 1em;
-	background: #333;
-	color: #fff;
-	font: normal normal normal 1.6em/1.1 Arial,sans-serif;
-	-webkit-border-radius: 50%;
-	border-radius: 50%;
-	box-shadow: inset 0 0 1px #808080;
-	cursor: pointer
-}
-
-#lightboxImage {
-	display: block;
-	width: 100%;
-	*width: auto;
-	height: auto;
-	vertical-align: top
-}
-
-#overlay {
-	background-color: #000;
-	-webkit-opacity: 0.8;
-	-moz-opacity: 0.8;
-	opacity: .80;
-	filter: alpha(opacity=80)
-}
-
-* html #overlay {
-	background-color: #333;
-	back\ground-color: transparent;
-	background-image: url(blank.gif);
-	filter:progid: DXImageTransform.Microsoft.AlphaImageLoader(src="../img/000000-0.8.png", sizingMethod="scale")
-}
-
-.thumb-image {
-display: block;
-width: 100%;
-max-width: 15em;
-height: auto;
-max-height: 8em;
-vertical-align: top;
-border: none
-}
-
-@media only screen and (max-width: 770px) {
-
-	.gallery{width:100%}
-	.thumb-image {margin: 0 auto}
-	.photo-link{float:none}
-
-}
-
 @media only screen and (max-width: 519px) {
 
 	#lightbox {max-width: 90%}
 	#lightboxDetails {width: 100% !important}
-
-}
-
-.thumb-image {
-	display: block;
-	width: 100%;
-	max-width: 15em;
-	height: auto;
-	max-height: 8em;
-	vertical-align: top;
-	border: none
-}
-
-@media only screen and (max-width: 770px) {
-
-	.gallery {width: 100%}
-	.thumb-image{margin: 0 auto}
-	.photo-link {float: none}
 
 }
 
@@ -257,20 +264,9 @@ border: none
 
 }
 
-.gutter {
-	width: 100%;
-	height: 1px;
+/*! End: Lightbox rules */
 
-	clear: both
-}
 
-.footer {
-	float: left;
-	clear: both;
-	width: 100%
-}
-
-*/
 
 </style>
 

@@ -7,6 +7,9 @@ This is a version adapted and corrected for a better cross-browser support, resp
 
 ## Configuration
 
+Add the script localy into your pages or:
+
+`<script src="//cdn.jsdelivr.net/gh/cara-tm/lightbox_js/lightbox_js.min.js"></script>`
 
 You have access to some variables in order to configure the script depending of your needs and/or pretty suitable for translations:
 

@@ -7,7 +7,9 @@ This is a version adapted and corrected for a better cross-browser support, resp
 
 ## Configuration
 
-Add the script localy into your pages or:
+Add the styles and the script files localy into your pages or:
+
+`<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/cara-tm/lightbox_js/css/lightbox.min.css" />`
 
 `<script src="//cdn.jsdelivr.net/gh/cara-tm/lightbox_js/lightbox_js.min.js"></script>`
 

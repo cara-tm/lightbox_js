@@ -94,17 +94,18 @@ body {
 	position: relative;
 	clear: both;
 	overflow: auto;
-	width: 60%;
+	width: auto /* 60% */;
 	margin: 0 auto 1em
 }
 
-
 .photo-link {
+	overflow: hidden;
+	position: relative;
 	display: block;
 	float: left;
 	width: 31%;
-	height: auto;
-	margin: 0 1% 1%;
+	height: 200px;
+	margin: 1%;
 	text-decoration: none;
 	border: none;
 	outline: none;
@@ -112,18 +113,25 @@ body {
 }
 
 .thumb-image {
-	overflow: hidden;
-	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	width: 100%;
-	max-width: 15em;
-	height: auto;
-	vertical-align: top;
+	height: 100%;
+	vertical-align: middle;
 	border: none;
 	border-style: none;
 	-ms-interpolation-mode: bicubic;
 	-o-object-fit: cover;
-	object-fit: cover
+	object-fit: cover;
+	-webkit-transform: translate(0%,0%);
+	-ms-transform: translate(0%,0%);
+	transform: translate(0%,0%)
 }
+
+
 
 @media screen and (max-width: 770px) {
 
@@ -273,14 +281,15 @@ html #lightbox {
 	display: block;
 	width: 1em;
 	width: 1.5rem;
-	
 	background: #333;
 	color: #fff;
 	text-align: center;
 	font: normal normal normal 1.6em/0.85 Arial,sans-serif;
 	line-height: 1.4rem;
+	/*
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
+	*/
 	box-shadow: inset 0 0 1px #808080;
 	cursor: pointer
 }
@@ -342,7 +351,7 @@ html #lightbox {
 
 @media screen and (max-width: 519px) {
 
-	#lightbox {max-width: 90%}
+	#lightbox {top:0 !important;max-width: 90%}
 	#lightboxDetails {width: 100% !important}
 
 }
@@ -381,10 +390,10 @@ html #lightbox{position:absolute!important}
 
 	<div class="gallery">
 
-		<a href="images/unplash.jpg" title="Click to display" data-box="lightbox" data-title="Arche" class="photo-link"><img class="thumb-image" src="images/unplash.jpg" alt="Arche" /></a>
-		<a href="images/grayscale.jpg" title="Click to display" data-box="lightbox" class="photo-link"><img class="thumb-image" src="images/grayscale.jpg" alt="Grayscale" /></a>
-		<a href="images/480x270.png" title="Click to display" data-box="lightbox" class="photo-link"><img class="thumb-image" src="images/480x270.png" alt="Grayscale" /></a>
-		<a href="images/karla-villaizan-408309.jpg" title="Click to display" data-box="lightbox" data-title="Bilbao Museum (large)" class="photo-link"><img class="thumb-image" src="images/karla-villaizan-408309.jpg" alt="Bilbao Museum (large)" /></a>
+		<a href="images/unplash.jpg" title="Click to display" data-box="lightbox" data-title="Arche" class="photo-link" target="_blank"><img class="thumb-image" src="images/unplash.jpg" alt="Arche" /></a>
+		<a href="images/grayscale.jpg" title="Click to display" data-box="lightbox" class="photo-link" target="_blank"><img class="thumb-image" src="images/grayscale.jpg" alt="Grayscale" /></a>
+		<a href="images/480x270.png" title="Click to display" data-box="lightbox" class="photo-link" target="_blank"><img class="thumb-image" src="images/480x270.png" alt="Grayscale" /></a>
+		<a href="images/karla-villaizan-408309.jpg" title="Click to display" data-box="lightbox" data-title="Bilbao Museum (large)" class="photo-link" target="_blank"><img class="thumb-image" src="images/karla-villaizan-408309.jpg" alt="Bilbao Museum (large)" /></a>
 
 	</div> <!-- /gallery -->
 	

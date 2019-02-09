@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en-us" dir="ltr"> 
 <head> 
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta charset="utf-8">
 <title>Lightbox JS Example</title>
 
@@ -11,58 +11,7 @@
 <!--[if IE]><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><meta http-equiv="imagetoolbar" content="no"><![endif]-->
 
 <style>
-@-webkit-keyframes bounce {
-  0% {
-    -webkit-transform: scale3d(0.1,0.1,1);
-            transform: scale3d(0.1,0.1,1);
-    -webkit-box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-            box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-  }
-  55% {
-    -webkit-transform: scale3d(1,1,1);
-            transform: scale3d(1,1,1);
-    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0);
-            box-shadow: 0 10px 20px rgba(0,0,0,0);
-  }
-  75% {
-    -webkit-transform: scale3d(0.95,0.95,1);
-            transform: scale3d(0.95,0.95,1);
-    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.9);
-            box-shadow: 0 0 20px rgba(0,0,0,0.9);
-  }
-  100% {
-    -webkit-transform: scale3d(1,1,1);
-            transform: scale3d(1,1,1);
-    -webkit-box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-            box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-  }
-}
-@keyframes bounce {
-  0% {
-    -webkit-transform: scale3d(0.1,0.1,1);
-            transform: scale3d(0.1,0.1,1);
-    -webkit-box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-            box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-  }
-  55% {
-    -webkit-transform: scale3d(1,1,1);
-            transform: scale3d(1,1,1);
-    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0);
-            box-shadow: 0 10px 20px rgba(0,0,0,0);
-  }
-  75% {
-    -webkit-transform: scale3d(0.95,0.95,1);
-            transform: scale3d(0.95,0.95,1);
-    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.9);
-            box-shadow: 0 0 20px rgba(0,0,0,0.9);
-  }
-  100% {
-    -webkit-transform: scale3d(1,1,1);
-            transform: scale3d(1,1,1);
-    -webkit-box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-            box-shadow: 0 3px 20px rgba(0,0,0,0.9);
-  }
-}
+
 
 html {
 	/* killing 300ms touch delay in IE */
@@ -113,13 +62,12 @@ body {
 }
 
 .thumb-image {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+	display: block;
+	max-width: 100%;
+	max-height: 200px;
+	width: auto;
+	height: auto;
+	margin: 0 auto;
 	vertical-align: middle;
 	border: none;
 	border-style: none;
@@ -131,23 +79,34 @@ body {
 	transform: translate(0%,0%)
 }
 
+/*
+ * For consistency with recent browsers only
+ */
+@media screen and (min-width: 771px) {
+
+	.thumb-image {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		max-width: 100%;
+		width: 100%;
+		height: 100%
+	}
+
+}
+
 
 
 @media screen and (max-width: 770px) {
 
-	.gallery{width:100%}
-	.thumb-image {margin: 0 auto}
-	.photo-link{display:block;float:none;width:98%}
+	.gallery{overflow: hidden;width: 100%}
+	.photo-link{display: block;float: none;width: 100%}
+	.thumb-image {width: 100%;margin: 0 auto}
 
 }
 
-@media screen and (max-width: 770px) {
-
-	.gallery {width: 100%}
-	.thumb-image{margin: 0 auto}
-	.photo-link {float: none}
-
-}
 
 .gutter {
 	width: 100%;
@@ -161,33 +120,73 @@ body {
 	width: 100%
 }
 
+
+
 /*! Start: Lightbox rules */
 
 @-webkit-keyframes bounce {
 
 	0% {
 		-webkit-transform: scale3d(0.1, 0.1, 1);
-		transform: scale3d(.1, .1, 1);
-		-webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
-		box-shadow: 0 3px 20px rgba(0, 0, 0, .9)
+		transform: scale3d(.1, .1, 1)
 	}
 	55% {
 		-webkit-transform: scale3d(1, 1, 1);
-		transform: scale3d(1, 1, 1);
-		-webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0)
+		transform: scale3d(1, 1, 1)
 	}
 	75% {
 		-webkit-transform: scale3d(0.95, 0.95, 1);
-		transform: scale3d(.95, .95, 1);
-		-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
-		box-shadow: 0 0 20px rgba(0, 0, 0, .9)
+		transform: scale3d(.95, .95, 1)
 	}
 	100% {
 		-webkit-transform: scale3d(1, 1, 1);
-		transform: scale3d(1, 1, 1);
-		-webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
-		box-shadow: 0 3px 20px rgba(0, 0, 0, .9)
+		transform: scale3d(1, 1, 1)
+	}
+
+}
+
+@-moz-keyframes bounce {
+
+	0% {
+		-webkit-transform: scale3d(0.1, 0.1, 1);
+		-moz-transform: scale3d(.1, .1, 1);
+		     transform: scale3d(.1, .1, 1)
+	}
+	55% {
+		-webkit-transform: scale3d(1, 1, 1);
+		-moz-transform: scale3d(1, 1, 1);
+		     transform: scale3d(1, 1, 1)
+	}
+	75% {
+		-webkit-transform: scale3d(0.95, 0.95, 1);
+		-moz-transform: scale3d(.95, .95, 1);
+		     transform: scale3d(.95, .95, 1)
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1);
+		-moz-transform: scale3d(1, 1, 1);
+		     transform: scale3d(1, 1, 1)
+	}
+
+}
+
+@-o-keyframes bounce {
+
+	0% {
+		-webkit-transform: scale3d(0.1, 0.1, 1);
+		transform: scale3d(.1, .1, 1)
+	}
+	55% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1)
+	}
+	75% {
+		-webkit-transform: scale3d(0.95, 0.95, 1);
+		transform: scale3d(.95, .95, 1)
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1)
 	}
 
 }
@@ -196,28 +195,41 @@ body {
 
 	0% {
 		-webkit-transform: scale3d(0.1, 0.1, 1);
-		transform: scale3d(.1, .1, 1);
-		-webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
-		box-shadow: 0 3px 20px rgba(0, 0, 0, .9)
+		transform: scale3d(.1, .1, 1)
 	}
 	55% {
 		-webkit-transform: scale3d(1, 1, 1);
-		transform: scale3d(1, 1, 1);
-		-webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0)
+		transform: scale3d(1, 1, 1)
 	}
 	75% {
 		-webkit-transform: scale3d(0.95, 0.95, 1);
-		transform: scale3d(.95, .95, 1);
-		-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
-		box-shadow: 0 0 20px rgba(0, 0, 0, .9)
+		transform: scale3d(.95, .95, 1)
 	}
 	100% {
 		-webkit-transform: scale3d(1, 1, 1);
-		transform: scale3d(1, 1, 1);
-		-webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
-		box-shadow: 0 3px 20px rgba(0, 0, 0, .9)
+		transform: scale3d(1, 1, 1)
 	}
+
+}
+
+@-webkit-keyframes fade {
+
+	0% {opacity: 0}
+	50% {opacity: 0.80}
+
+}
+
+@-moz-keyframes fade {
+
+	0% {opacity: 0}
+	50% {opacity: .80}
+
+}
+
+@keyframes fade {
+
+	0% {opacity: 0}
+	50% {opacity: .80}
 
 }
 
@@ -226,18 +238,24 @@ body {
 	right: 0;
 	bottom: 0;
 	background-color: #333;
-	background-color: rgba(0, 0, 0, .95);
+	background-color: rgba(0, 0, 0, 0.95);
+
 	-webkit-opacity: 0.8;
 	-moz-opacity: 0.8;
 	opacity: .80;
-	filter: alpha(opacity=80)
+	filter: alpha(opacity=80);
+	will-change: opacity;
+	-webkit-animation: fade 700ms linear;
+	-moz-animation: fade 700ms linear;
+	-o-animation: fade 700ms linear;
+	animation: fade 700ms linear
 }
 
 * html #overlay {
 	position: absolute !important;
 	background-color: #333;
 	back\ground-color: transparent;
-	background-image: url(blank.gif);
+	background-image: url(../img/blank.gif);
 	filter:progid: DXImageTransform.Microsoft.AlphaImageLoader(src="../img/000000-0.8.png", sizingMethod="scale")
 }
 
@@ -246,15 +264,18 @@ html #lightbox {
 	max-width: calc(100% - 6px);
 	margin: 0 auto;
 	padding: 0 0 5px;
+/* If you want to add a border:
 	border: 3px solid #fff;
+*/
 	background-color: #000;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, 0.5);
 	border-radius: 4px;
-	-webkit-animation: bounce 1s ease-in-out;
-	-moz-animation-name: bounce 1s ease-in-out;
-	-ms-animation-name: bounce 1s ease-in-out;
-	animation: bounce 1s cubic-bezier(.65, .05, .36, 1);
-	transform: translate3d(0, 0, 0);
+	-webkit-transform-origin: center center;
+	transform-origin: center center;
+	-webkit-animation: bounce 800ms ease-in-out;
+	-moz-animation-name: bounce 800ms ease-in-out;
+	-o-animation-name: bounce 800ms ease-in-out;
+	animation: bounce 800ms cubic-bezier(.65, .05, .36, 1);
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	will-change: transform;
@@ -262,9 +283,7 @@ html #lightbox {
 	touch-action: none
 }
 
-* html #lightbox {
-	position: absolute!important
-}
+* html #lightbox {position: absolute !important}
 
 #lightbox a {
 	text-decoration: none;
@@ -276,39 +295,42 @@ html #lightbox {
 #closeButton {
 	position: absolute;
 	z-index: 2000;
-	top: 1px;
-	right: 1px;
+	top: 0;
+	right: 0;
 	display: block;
 	width: 1em;
 	width: 1.5rem;
 	background: #333;
+	vertical-align: middle;
 	color: #fff;
 	text-align: center;
-	font: normal normal normal 1.6em/0.85 Arial,sans-serif;
+	font: normal normal normal 1.55em/0.85 Arial,sans-serif;
 	line-height: 1.4rem;
-	/*
-	-webkit-border-radius: 50%;
+
+	border: 1px solid #808080;
+/* If you want a rounding close button:
 	border-radius: 50%;
-	*/
-	box-shadow: inset 0 0 1px #808080;
+*/
 	cursor: pointer
 }
 
 @supports (box-shadow:0 0 0 #fff) {
 
-	#lightbox {position: fixed!important}
-	#closeButton {height: auto}
+	#lightbox {position: fixed!important;top: 0}
+	#closeButton {height: auto;border: none;box-shadow: inset 0 0 1px #b3b3b3}
 
 }
 
 #lightbox img {
 	clear: both;
 	width: auto;
-	max-height: 93vh;
+	max-height: 94.3vh;
 	max-width: 100%;
 	margin: 0 auto;
 	border: none;
-	object-fit: contain
+	border-style: none;
+	object-fit: contain;
+	object-position: center
 }
 
 #overlay img {border: none}
@@ -324,8 +346,9 @@ html #lightbox {
 #lightboxDetails {
 	float: left;
 	width: 100%;
+	margin: 0 0 -5px 0;
 	padding: 0;
-	background: #333;
+	background: #000;
 	background: rgba(0, 0, 0, 0.7);
 	color: #ccc;
 	font: normal normal normal 0.8em/1 sans-serif
@@ -349,18 +372,24 @@ html #lightbox {
 	color: #aaa
 }
 
-@media screen and (max-width: 519px) {
+@media screen and (max-width: 770px) {
 
-	#lightbox {top:0 !important;max-width: 90%}
+	html #lightbox {position: fixed!important;top: 0!important;max-width: 90%}
 	#lightboxDetails {width: 100% !important}
 
 }
 
-@media screen and (max-width: 519px) {
+/* If you want to apply a bluring effect over the entire document, uncomment:
 
-	#lightbox{max-width:90%}
-
+.lightboxOn .wrapper,.lightboxOn .footer {
+	filter: url("data:image/svg+xml;utf9,<svg%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'><filter%20id='blur'><feGaussianBlur%20stdDeviation='3'%20/></filter></svg>#blur");
+	-webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	filter: blur(3px);
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3')
 }
+
+*/
 
 /*! End: Lightbox rules */
 
@@ -369,12 +398,12 @@ html #lightbox {
 </style>
 
 <!-- Best practice: use external link instead
-<link href="css/lightbox.min.css" rel="stylesheet" media="screen">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/cara-tm/lightbox_js/css/lightbox.min.css" media="screen" />
 -->
 
 <!--[if lte IE 6]>
 <style>
-/*! IE5 just because LightBox JS seems to work with it :D */
+/*! IE5 just because LightBox JS seems to work with it 😋 */
 body {overflow-x: hidden}
 #overlay{background:#000!important}
 html #lightbox{position:absolute!important}
@@ -390,16 +419,23 @@ html #lightbox{position:absolute!important}
 
 	<div class="gallery">
 
-		<a href="images/unplash.jpg" title="Click to display" data-box="lightbox" data-title="Arche" class="photo-link" target="_blank"><img class="thumb-image" src="images/unplash.jpg" alt="Arche" /></a>
-		<a href="images/grayscale.jpg" title="Click to display" data-box="lightbox" class="photo-link" target="_blank"><img class="thumb-image" src="images/grayscale.jpg" alt="Grayscale" /></a>
-		<a href="images/480x270.png" title="Click to display" data-box="lightbox" class="photo-link" target="_blank"><img class="thumb-image" src="images/480x270.png" alt="Grayscale" /></a>
+		<a href="images/unplash.jpg" title="Click to display" data-box="lightbox" data-title="Arche" class="photo-link" target="_blank">
+			<img class="thumb-image" src="images/unplash.jpg" alt="Arche" />
+		</a>
+		<a href="images/grayscale.jpg" title="Click to display" data-box="lightbox" data-title="Grayscale. A long caption for this picture here in order to test the position of this item." class="photo-link" target="_blank">
+			<img class="thumb-image" src="images/grayscale.jpg" alt="Grayscale" />
+		</a>
+		<a href="images/480x270.png" title="Click to display" data-box="lightbox" data-title="Placeholder" class="photo-link" target="_blank">
+			<img class="thumb-image" src="images/480x270.png" alt="Grayscale" />
+		</a>
 		<a href="images/karla-villaizan-408309.jpg" title="Click to display" data-box="lightbox" data-title="Bilbao Museum (large)" class="photo-link" target="_blank"><img class="thumb-image" src="images/karla-villaizan-408309.jpg" alt="Bilbao Museum (large)" /></a>
 
 	</div> <!-- /gallery -->
+
+	<p style="line-height:1.5">The 20 years old but well known javascript LightBox v.1 with no dependencies (very light: 4.5 Ko only) that helped us in the '2000s to create simple but effective photo galleries. This is a version adapted and corrected for a better cross-browser support, Cross-Site Scripting (XSS) attacks safe, data attributes support, responsive and with capacities for multilanguage. Minified within Babel JS to follow the new generation of coding.</p>
 	
 	<div class="gutter"></div>
-
-	<p>The oldy but well known javascript LightBox v. 1 with no dependencies that helped us in the '2000s to create simple but effective photo galleries. This is a version adapted and corrected for a better cross-browser support, responsive and with capacities for multilanguage. Minified within Babel JS to follow the new generation of coding.</p>
+</div> <!-- /wrapper -->
 	
 	<div class="footer">
 		<div class="footer-inner">
@@ -407,7 +443,11 @@ html #lightbox{position:absolute!important}
 		</div>
 	</div>
 
-</div> <!-- /wrapper -->
+
+
+<!-- You can externalize the script:
+	<script src="//cdn.jsdelivr.net/gh/cara-tm/lightbox_js/lightbox_js.min.js"></script>
+-->
 
 <script>
 /*!

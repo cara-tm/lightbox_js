@@ -39,12 +39,19 @@ body {
 }
 
 .gallery {
-	overflow: hidden;
 	position: relative;
-	clear: both;
+/*
 	overflow: auto;
+*/
+	clear: both;
 	width: auto /* 60% */;
 	margin: 0 auto 1em
+}
+
+.gallery:after {
+	content: "";
+	display: table;
+	clear: both
 }
 
 .photo-link {
@@ -52,7 +59,7 @@ body {
 	position: relative;
 	display: block;
 	float: left;
-	width: 31%;
+	width: 23%;
 	height: 200px;
 	margin: 1%;
 	text-decoration: none;
@@ -315,9 +322,9 @@ html #lightbox {
 	cursor: pointer
 }
 
-@supports (box-shadow:0 0 0 #fff) {
+@supports (display: grid) {
 
-	html body #lightbox {position: fixed;top: 0}
+	html body #lightbox {position: fixed!important;top: 0!important}
 	#closeButton {height: auto;border: none;box-shadow: inset 0 0 1px #b3b3b3}
 
 }
@@ -338,7 +345,7 @@ html #loadingImage {
 	max-width: 100%;
 	height: auto;
 	max-height: 100%;
-	max-height: 94.3vh;
+	max-height: 94vh;
 	
 	margin: 0 auto;
 	border: none;
@@ -477,6 +484,6 @@ html #lightbox{position:absolute!important}
  *	Licensed under the Creative Commons Attribution 2.5 License - http://creativecommons.org/licenses/by/2.5/
  *	(basically, do anything you want, just leave my name and link)
  */
-var close_string='press x key or tap to close',close_tooltip='Click to close';var setText=function(){return"innerText"in document.createElement("span")?function(c,d){c.innerText=d}:function(c,d){c.textContent=d}}();function getPageScroll(){var a;return self.pageYOffset?a=self.pageYOffset:document.documentElement&&document.documentElement.scrollTop?a=document.documentElement.scrollTop:document.body&&(a=document.body.scrollTop),arrayPageScroll=['',a],arrayPageScroll}function getPageSize(){var a,b;window.innerHeight&&window.scrollMaxY?(a=document.body.scrollWidth,b=window.innerHeight+window.scrollMaxY):document.body.scrollHeight>document.body.offsetHeight?(a=document.body.scrollWidth,b=document.body.scrollHeight):(a=document.body.offsetWidth,b=document.body.offsetHeight);var c,d;return self.innerHeight?(c=self.innerWidth,d=self.innerHeight):document.documentElement&&document.documentElement.clientHeight?(c=document.documentElement.clientWidth,d=document.documentElement.clientHeight):document.body&&(c=document.body.clientWidth,d=document.body.clientHeight),pageHeight=b<d?d:b,pageWidth=a<c?c:a,arrayPageSize=[pageWidth,pageHeight,c,d],arrayPageSize}function pause(a){for(var b=new Date,c=b.getTime()+a;;)if(b=new Date,b.getTime()>c)return}function getKey(a){keycode=null==a?event.keyCode:a.which,key=String.fromCharCode(keycode).toLowerCase(),'x'==key&&hideLightbox()}function listenKey(){document.onkeypress=getKey}function showLightbox(a){var b=document.getElementById('overlay'),c=document.getElementById('lightbox'),d=document.getElementById('lightboxCaption'),f=document.getElementById('lightboxImage'),g=document.getElementById('loadingImage'),h=document.getElementById('lightboxDetails'),j=getPageSize(),k=getPageScroll();g&&(g.style.top=k[1]+(j[3]-35-g.height)/2+'px',g.style.left=(j[0]-20-g.width)/2+'px',g.style.display='block'),b.style.height=j[1]+'px',b.style.display='block',imgPreload=new Image,imgPreload.onload=function(){f.src=a.href;var l=k[1]+(j[3]-35-imgPreload.height)/2,m=(j[0]-20-imgPreload.width)/2,n=m;for(c.style.top=0>l?'0px':l+'px',c.style.left=0>m?'0px':m+'px',c.style.right=0>n?'0px':n+'px',a.getAttribute('data-title')?(setText(d,a.getAttribute('data-title'))):'',-1!=navigator.appVersion.indexOf('MSIE')&&pause(250),g&&(g.style.display='none'),selects=document.getElementsByTagName('select'),i=0;i!=selects.length;i++)selects[i].style.visibility='hidden';return c.style.display='block',j=getPageSize(),b.style.height=j[1]+'px',listenKey(),!1},imgPreload.src=a.href}function removeClass(a,b){var c=new RegExp('(\\s|^)'+b+'(\\s|$)');a.className=a.className.replace(c,' ')}function hideLightbox(){for(objOverlay=document.getElementById('overlay'),objLightbox=document.getElementById('lightbox'),objOverlay.style.display='none',objLightbox.style.display='none',selects=document.getElementsByTagName('select'),i=0;i!=selects.length;i++)selects[i].style.visibility='visible';document.onkeypress='';removeClass(document.getElementsByTagName('html')[0],'lightboxOn')}function initLightbox(){if(document.getElementsByTagName){for(var c,a=document.getElementsByTagName('a'),b=0;b<a.length;b++)c=a[b],c.getAttribute('href')&&'lightbox'==c.getAttribute('data-box')&&(c.onclick=function(){document.getElementsByTagName('html')[0].className+=' lightboxOn';return showLightbox(this),!1});var d=document.getElementsByTagName('body').item(0),f=document.createElement('div');f.setAttribute('id','overlay'),f.onclick=function(){return hideLightbox(),!1},f.style.display='none',f.style.position='absolute',f.style.top='0',f.style.left='0',f.style.zIndex='90',f.style.width='100%',d.insertBefore(f,d.firstChild);var g=getPageSize(),h=getPageScroll(),j=new Image;j.onload=function(){var r=document.createElement('a');r.setAttribute('href','#'),r.onclick=function(){return hideLightbox(),!1},f.appendChild(r);var s=document.createElement('div');return s.setAttribute('id','loadingImage'),s.style.position='absolute',s.style.zIndex='150',r.appendChild(s),j.onload=function(){},!1},j.src='data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';var k=document.createElement('div');k.setAttribute('id','lightbox'),k.style.display='none',k.style.position='absolute',k.style.position='absolute',k.style.zIndex='100',d.insertBefore(k,f.nextSibling);var l=document.createElement('a'),r=document.createElement('span');l.setAttribute('href','#'),l.setAttribute('title',close_tooltip),setText(r,'×'),r.setAttribute('id','closeButton'),l.appendChild(r);l.onclick=function(){return hideLightbox(),!1},k.appendChild(l);var n=document.createElement('img');n.setAttribute('id','lightboxImage'),l.appendChild(n);var o=document.createElement('div');o.setAttribute('id','lightboxDetails'),k.appendChild(o);var p=document.createElement('div');p.setAttribute('id','lightboxCaption'),o.appendChild(p);var q=document.createElement('div');q.setAttribute('id','keyboardMsg'),setText(q,close_string),o.appendChild(q)}}function addLoadEvent(a){var b=window.onload;window.onload='function'==typeof window.onload?function(){b(),a()}:a}addLoadEvent(initLightbox);
+'use strict';var close_string='press x key or tap to close',close_tooltip='Click to close',pageHeight=window.innerHeight||document.documentElement.clientHeight||document.getElementsByTagName('body')[0].clientHeight,pageWidth=window.innerWidth||document.documentElement.clientWidth||document.getElementsByTagName('body')[0].clientWidth,arrayPageSize='',arrayPageScroll='',imgPreload='',selects='',i='',objOverlay='',objLightbox='',keycode='',key='';var setText=function(){return'innerText'in document.createElement('span')?function(c,d){c.innerText=d}:function(c,d){c.textContent=d}}();function getPageScroll(){var a;return self.pageYOffset?a=self.pageYOffset:document.documentElement&&document.documentElement.scrollTop?a=document.documentElement.scrollTop:document.body&&(a=document.body.scrollTop),arrayPageScroll=['',a],arrayPageScroll}function getPageSize(){var a,b;window.innerHeight&&window.scrollMaxY?(a=document.body.scrollWidth,b=window.innerHeight+window.scrollMaxY):document.body.scrollHeight>document.body.offsetHeight?(a=document.body.scrollWidth,b=document.body.scrollHeight):(a=document.body.offsetWidth,b=document.body.offsetHeight);var c,d;return self.innerHeight?(c=self.innerWidth,d=self.innerHeight):document.documentElement&&document.documentElement.clientHeight?(c=document.documentElement.clientWidth,d=document.documentElement.clientHeight):document.body&&(c=document.body.clientWidth,d=document.body.clientHeight),pageHeight=b<d?d:b,pageWidth=a<c?c:a,arrayPageSize=[pageWidth,pageHeight,c,d],arrayPageSize}function pause(a){for(var b=new Date,c=b.getTime()+a;;)if(b=new Date,b.getTime()>c)return}function getKey(a){keycode=null==a?event.keyCode:a.which,key=String.fromCharCode(keycode).toLowerCase(),'x'==key&&hideLightbox()}function listenKey(){document.onkeypress=getKey}function showLightbox(a){var b=document.getElementById('overlay'),c=document.getElementById('lightbox'),d=document.getElementById('lightboxCaption'),f=document.getElementById('lightboxImage'),g=document.getElementById('loadingImage'),h=document.getElementById('lightboxDetails'),j=getPageSize(),k=getPageScroll();g&&(g.style.top=k[1]+(j[3]-35-g.height)/2+'px',g.style.left=(j[0]-20-g.width)/2+'px',g.style.display='block'),b.style.height=j[1]+'px',b.style.display='block',imgPreload=new Image,imgPreload.onload=function(){f.src=a.href;var l=k[1]+(j[3]-35-imgPreload.height)/2,m=(j[0]-20-imgPreload.width)/2,n=m;for(c.style.top=0>l?'0px':l+'px',c.style.left=0>m?'0px':m+'px',c.style.right=0>n?'0px':n+'px',f.setAttribute('alt',(a.getAttribute('data-title')?a.getAttribute('data-title'):'')),a.getAttribute('data-title')?(setText(d,a.getAttribute('data-title'))):'',-1!=navigator.appVersion.indexOf('MSIE')&&pause(250),g&&(g.style.display='none'),selects=document.getElementsByTagName('select'),i=0;i!=selects.length;i++)selects[i].style.visibility='hidden';return c.style.display='block',j=getPageSize(),b.style.height=j[1]+'px',listenKey(),!1},imgPreload.src=a.href}function removeClass(a,b){var c=new RegExp('(\\s|^)'+b+'(\\s|$)');a.className=a.className.replace(c,' ')}function hideLightbox(){for(objOverlay=document.getElementById('overlay'),objLightbox=document.getElementById('lightbox'),objOverlay.style.display='none',objLightbox.style.display='none',selects=document.getElementsByTagName('select'),i=0;i!=selects.length;i++)selects[i].style.visibility='visible';document.onkeypress='';removeClass(document.getElementsByTagName('html')[0],'lightboxOn')}function initLightbox(){if(document.getElementsByTagName){for(var c,a=document.getElementsByTagName('a'),b=0;b<a.length;b++)c=a[b],c.getAttribute('href')&&'lightbox'==c.getAttribute('data-box')&&(c.onclick=function(){document.getElementsByTagName('html')[0].className+=' lightboxOn';return showLightbox(this),!1});var d=document.getElementsByTagName('body').item(0),f=document.createElement('div');f.setAttribute('id','overlay'),f.onclick=function(){return hideLightbox(),!1},f.style.display='none',f.style.position='absolute',f.style.top='0',f.style.left='0',f.style.zIndex='90',f.style.width='100%',d.insertBefore(f,d.firstChild);var g=getPageSize(),h=getPageScroll(),j=new Image;j.onload=function(){var r=document.createElement('a');r.setAttribute('href','#'),r.onclick=function(){return hideLightbox(),!1},f.appendChild(r);var s=document.createElement('div');return s.setAttribute('id','loadingImage'),s.style.position='absolute',s.style.zIndex='150',r.appendChild(s),j.onload=function(){},!1},j.src='data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';var k=document.createElement('div');k.setAttribute('id','lightbox'),k.style.display='none',k.style.position='absolute',k.style.position='absolute',k.style.zIndex='100',d.insertBefore(k,f.nextSibling);var l=document.createElement('a'),r=document.createElement('span');l.setAttribute('href','#'),l.setAttribute('title',close_tooltip),setText(r,'×'),r.setAttribute('id','closeButton'),l.appendChild(r);l.onclick=function(){return hideLightbox(),!1},k.appendChild(l);var n=document.createElement('img');n.setAttribute('id','lightboxImage'),l.appendChild(n);var o=document.createElement('div');o.setAttribute('id','lightboxDetails'),k.appendChild(o);var p=document.createElement('div');p.setAttribute('id','lightboxCaption'),o.appendChild(p);var q=document.createElement('div');q.setAttribute('id','keyboardMsg'),setText(q,close_string),o.appendChild(q)}}function addLoadEvent(a){var b=window.onload;window.onload='function'==typeof window.onload?function(){b(),a()}:a}addLoadEvent(initLightbox);
 </script>
 </body></html>

@@ -266,6 +266,11 @@ body {
 	filter:progid: DXImageTransform.Microsoft.AlphaImageLoader(src="./img/000000-0.8.png", sizingMethod="scale")
 }
 
+html #overlay > a {
+	display: block;
+	height: 100%
+}
+
 html #lightbox {
 	max-width: 99%;
 	max-width: calc(100% - 6px);
@@ -331,8 +336,8 @@ html #lightbox {
 
 html #loadingImage {
 	position: absolute;
-	top: 50%;
-	top: calc(50% - 38px);
+	top: 25% !important;
+	top: calc(50vh - 38px) !important;
 	left: 50%;
 	width: 38px;
 	height: 38px;
